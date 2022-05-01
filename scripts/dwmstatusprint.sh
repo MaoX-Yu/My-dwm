@@ -33,9 +33,9 @@ check_connect(){
 	line=$(grep $interface /proc/net/dev | cut -d ':' -f 2 | awk '{print "received_bytes="$1, "transmitted_bytes="$9}')
 	sped=$(echo $line | sed -r "s/.*=(.*).*/\1/")
 	if [ "$sped" -eq 0 ]; then
-		printf ""
+		printf "睊"
 	else
-		printf ""
+		printf "直"
 	fi
 }
 
@@ -85,6 +85,6 @@ get_bytes
 vel_recv=$(get_velocity $received_bytes $old_received_bytes $now)
 vel_trans=$(get_velocity $transmitted_bytes $old_transmitted_bytes $now)
 
-xsetroot -name " $(check_connect)  $vel_recv  $vel_trans | $(dwm_alsa) | $(get_battery_combined_percent) |  $(print_date) "
+xsetroot -name " $(check_connect) ⬇ $vel_recv ⬆ $vel_trans | $(dwm_alsa) | $(get_battery_combined_percent) |  $(print_date) "
 
 exit 0
